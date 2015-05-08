@@ -39,5 +39,15 @@ end
     client2 = Client.new({:name => "Bob", :id => nil})
     expect(client1).to(eq(client2))
   end
-end
+ end
+
+ describe(".find") do
+   it("returns a list by its ID") do
+     test_client = Client.new({:name => "Bob", :id => nil})
+     test_client.save()
+     test_client2 = Client.new({:name => "BobBob", :id => nil})
+     test_client2.save()
+     expect(Client.find(test_client2.id())).to(eq(test_client2))
+   end
+ end
 end
