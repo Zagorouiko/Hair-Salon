@@ -54,7 +54,7 @@ end
 
  describe("#update") do
    it("lets you update stylists in the database") do
-     stylist = Patron.new({:name => "Robert", :id => nil})
+     stylist = Stylist.new({:name => "Robert", :id => nil})
      stylist.save()
      stylist.update({:name => "Sam"})
      expect(stylist.name()).to(eq("Sam"))
