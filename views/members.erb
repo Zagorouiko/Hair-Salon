@@ -1,0 +1,11 @@
+<h1>Hello Members</h1>
+<h2>Click on your profile to edit<h2>
+
+
+<ul>
+  <% @clients.each() do |client| %>
+  <li><a href="/members/<%= client.id() %>"><%= client.name() %></a></li>
+  <% end %>
+</ul>
+
+<a href="/">Home</a>

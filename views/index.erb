@@ -1,0 +1,13 @@
+<h1>Welcome to the Hair Salon</h1>
+
+
+<li><a href="/client_form">Sign Up</a></li>
+<li><a href="/stylist_signin">Stylist Sign-in</a></li>
+</ul><a href="/members">Enter Members</a></ul>
+
+<h2>Members</h2>
+<li><ul>
+  <% @clients.each() do |client| %>
+  <li><a href="/members/<%= client.id() %>"><%= client.name() %></a></li>
+  <% end %>
+</ul></li>

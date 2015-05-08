@@ -1,8 +1,6 @@
 require('spec_helper')
-
-
-require('spec_helper')
-
+require('stylist')
+require('pry')
 
 describe(Stylist) do
 
@@ -62,6 +60,17 @@ end
      client2 = Client.new({:name => "Bobbb", :id => nil})
      client2.save()
      client.update({:name => "Bobbb", :id => nil})
+   end
+ end
+
+ describe('#delete') do
+   it("lets you delete a client from the database") do
+     client = Client.new({:name => "Bob", :id => nil})
+     client.save()
+     client2 = Client.new({:name => "Bobbb", :id => nil})
+     client2.save()
+     client.delete()
+     expect(Client.all()).to(eq([client2]))
    end
  end
 end
