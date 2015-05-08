@@ -47,6 +47,11 @@ define_method(:save) do
     end
   end
 
+  define_method(:delete) do
+    DB.exec("DELETE FROM appointments WHERE stylist_id = #{self.id()};")
+    DB.exec("DELETE FROM stylists WHERE id = #{self.id()};")
+  end
+
   define_method(:clients) do
     stylist_clients = []
     clients = DB.exec("SELECT * FROM clients WHERE stylist_id = #{self.id()};")
