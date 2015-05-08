@@ -46,7 +46,7 @@ end
  end
 
  describe(".find") do
-   it("returns a list by its ID") do
+   it("returns a client by their ID") do
      test_client = Client.new({:name => "Bob", :id => nil})
      test_client.save()
      test_client2 = Client.new({:name => "BobBob", :id => nil})

@@ -1,4 +1,5 @@
 require('spec_helper')
+require('pry')
 
 
 describe(Stylist) do
@@ -42,7 +43,7 @@ end
  end
 
  describe(".find") do
-   it("returns a list by its ID") do
+   it("returns a stylist by their ID") do
      test_stylist = Stylist.new({:name => "Bob", :id => nil})
      test_stylist.save()
      test_stylist2 = Stylist.new({:name => "BobBob", :id => nil})
@@ -51,15 +52,24 @@ end
    end
  end
 
+ describe("#update") do
+   it("lets you update stylists in the database") do
+     stylist = Patron.new({:name => "Robert", :id => nil})
+     stylist.save()
+     stylist.update({:name => "Sam"})
+     expect(stylist.name()).to(eq("Sam"))
+   end
+ end
+
  describe('#clients') do
    it('returns an array of clients for that stylist') do
      test_stylist = Stylist.new({:name => "Bob", :id => nil})
      test_stylist.save()
-     test_client = Client.new({:name => "Bill", :client_id => test_client.id()})
+     test_client = Client.new({:name => "Bill", :client_id => test_stylist.id(), :id => nil})
      test_client.save()
-     test_client2 = Client.new({:name => "Bill", :client_id => test_client.id()})
+     test_client2 = Client.new({:name => "Bill", :client_id => test_stylist.id(), :id => nil})
      test_client2.save()
-     expect(test_stylist.tasks()).to(eq([test_client, test_client2]))
+     expect(test_stylist.clients()).to(eq([test_client, test_client2]))
    end
  end
 end

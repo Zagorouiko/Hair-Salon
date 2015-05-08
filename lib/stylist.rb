@@ -37,14 +37,24 @@ define_method(:save) do
     found_stylist
   end
 
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name, @name)
+    @id = self.id()
+    DB.exec("UPDATE stylist SET name = '#{@name}' WHERE id = #{@id};")
+
+    attributes.fetch(:client_id, []).each() do |client_id|
+      DB.exec("INSERT INTO checkouts (client_id, stylist_id) VALUES (#{client_id}, #{self.id()});")
+    end
+  end
+
   define_method(:clients) do
     stylist_clients = []
-    clients = DB.exec("SELECT FROM clients WHERE client_id = #{self.id()};")
+    clients = DB.exec("SELECT * FROM clients WHERE stylist_id = #{self.id()};")
+binding.pry
     clients.each() do |client|
       name = client.fetch("name")
       stylist_id = client.fetch("client_id").to_i()
       stylist_clients.push(Client.new({:name => name, :client_id => stylist_id}))
     end
-    stylist_clients
   end
 end
