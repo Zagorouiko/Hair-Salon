@@ -32,4 +32,12 @@ end
       expect(Client.all()).to(eq([test_client]))
     end
   end
+
+  describe("#==") do
+    it("is the same client if it has the same name") do
+    client1 = Client.new({:name => "Bob", :id => nil})
+    client2 = Client.new({:name => "Bob", :id => nil})
+    expect(client1).to(eq(client2))
+  end
+end
 end
