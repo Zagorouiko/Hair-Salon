@@ -17,6 +17,14 @@ describe(Client) do
     end
   end
 
+  describe("#name") do
+    it("tells you the name")do
+    client = Client.new({:name => "Bob", :id => nil})
+    client.save()
+    expect(client.name()).to(eq('Bob'))
+  end
+end
+
   describe('#save') do
     it('adds the client to the database') do
       test_client = Client.new({:name => "new client", :id => nil})
