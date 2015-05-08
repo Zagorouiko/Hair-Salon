@@ -9,6 +9,14 @@ describe(Client) do
     end
   end
 
+  describe("#id") do
+    it("sets its ID when you save it") do
+      client = Client.new({:name => "Bob", :id => nil})
+      client.save()
+      expect(client.id()).to(be_an_instance_of(Fixnum))
+    end
+  end
+
   describe('#save') do
     it('adds the client to the database') do
       test_client = Client.new({:name => "new client", :id => nil})
